@@ -36,7 +36,7 @@ function Ambiguous() {
     }
 
     return (
-        <form className="calculator" onSubmit={(event) => { calculateAmbiguous(event) }}>
+        <form className="ambiguousCalculator" onSubmit={(event) => { calculateAmbiguous(event) }}>
             <h2>Ambiguous Case</h2>
             <label className="a">Length of side A:</label>
             <input type="number" id="a" name="a" value={a} onChange={(event) => { setA(Number(event.target.value)) }} required />

@@ -1,40 +1,37 @@
-function newtonMethod(g) {
-    return g - ((6 * Math.pow(g, 4) - 13 * Math.pow(g, 3) - 18 * Math.pow(g, 2) + 7 * g + 6) / (24 * Math.pow(g, 3) - 39 * Math.pow(g, 2) - 36 * g + 7));
-}
-
 import { useState } from 'react';
-import './heron.css';
+import './newton.css';
 
-function Heron() {
-    const [a, setA] = useState("");
-    const [b, setB] = useState("");
-    const [c, setC] = useState("");
+function Newton() {
+    const [g, setG] = useState("");
     const [result, setResult] = useState("");
 
-    function calculateHeron(event) {
+    function calculateNewton(event) {
         event.preventDefault();
-        const s = (a + b + c) / 2;
-        if ((a < b + c) && (b < a + c) && (c < a + b)) {
-            setResult(Math.sqrt(s * (s - a) * (s - b) * (s - c)));
-        } else {
-            setResult("This triangle is not valid");
-        }
-    }
 
+        let currentGuess = g;
+        let nextGuess;
+
+        while (true) {
+            nextGuess = currentGuess - ((6 * Math.pow(currentGuess, 4) - 13 * Math.pow(currentGuess, 3) - 18 * Math.pow(currentGuess, 2) + 7 * currentGuess + 6) / (24 * Math.pow(currentGuess, 3) - 39 * Math.pow(currentGuess, 2) - 36 * currentGuess + 7));
+            
+            if (Math.abs(nextGuess - currentGuess) > 0.0001) {
+                currentGuess = nextGuess;
+            } else {
+                break;
+            }
+        }
+        setResult(nextGuess.toFixed(3));
+    }
     return (
-        <form className="calculator" onSubmit={(event) => { calculateHeron(event) }}>
-            <h2>Heron's Formula</h2>
-            <label className="a">Side A:</label>
-            <input type="number" id="a" name="a" value={a} onChange={(event) => { setA(Number(event.target.value)) }} required />
-            <label className="b">Side B:</label>
-            <input type="number" id="b" name="b" value={b} onChange={(event) => { setB(Number(event.target.value)) }} required />
-            <label className="c">Side C:</label>
-            <input type="number" id="c" name="c" value={c} onChange={(event) => { setC(Number(event.target.value)) }} required />
-            <label className="result">Area:</label>
+        <form className="newtonCalculator" onSubmit={(event) => { calculateNewton(event) }}>
+            <h2>Newton's Method</h2>
+            <label className="g">Root Guess:</label>
+            <input type="number" id="g" name="g" value={g} onChange={(event) => { setG(Number(event.target.value)) }} required />
+            <label className="result">Root Approximation (Result):</label>
             <input type="text" id="result" name="result" value={result} readOnly />
             <input type="submit" value="Calculate" />
         </form>
     );
 }
 
-export default Heron;
+export default Newton;

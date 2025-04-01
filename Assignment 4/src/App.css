@@ -1,23 +1,11 @@
-/* Container for side-by-side layout */
 .side-by-side {
-  display: flex; /* Use flexbox for side-by-side layout */
-  justify-content: center; /* Center the calculators horizontally (x-axis) */
-  align-items: center; /* Center the calculators vertically (y-axis) */
-  gap: 20px; /* Add spacing between the calculators */
-  height: 100vh; /* Make the container take the full height of the viewport */
-  width: 100%; /* Ensure the container takes the full width of the viewport */
-  padding: 20px; /* Add padding around the container */
-  box-sizing: border-box; /* Include padding in the height and width calculation */
-  margin: 0; /* Remove any default margin from the container */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: 250px;
 }
 
-/* Optional: Style for each calculator */
-.side-by-side > * {
-  flex: 1; /* Make both calculators take equal width */
-  max-width: 400px; /* Limit the maximum width of each calculator */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  border-radius: 8px; /* Add rounded corners */
-  padding: 20px; /* Add padding inside each calculator */
-  background-color: #f9f9f9; /* Light background color */
-  text-align: center; /* Center text inside the calculators */
+.side-by-side > div {
+  flex: 1 1 calc(50% - 20px); 
+  min-width: 300px;
 }

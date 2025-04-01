@@ -18,7 +18,7 @@ function Heron() {
     }
 
     return (
-        <form className="calculator" onSubmit={(event) => { calculateHeron(event) }}>
+        <form className="heronCalculator" onSubmit={(event) => { calculateHeron(event) }}>
             <h2>Heron's Formula</h2>
             <label className="a">Side A:</label>
             <input type="number" id="a" name="a" value={a} onChange={(event) => { setA(Number(event.target.value)) }} required />
